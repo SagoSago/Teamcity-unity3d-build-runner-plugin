@@ -62,6 +62,11 @@ public class UnityRunner {
             args.add(String.format("--build_path=%s", configuration.buildPath));
         }
 
+        if (!configuration.buildTarget.equals("")) {
+            args.add("-buildTarget");
+            args.add(configuration.buildTarget);
+        }        
+
         if (!configuration.projectPath.equals("")) {
             args.add("-projectPath");
             args.add(configuration.projectPath);

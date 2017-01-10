@@ -44,6 +44,7 @@ public class UnityRunnerConfiguration {
     final String buildPath;
     final String extraOptsString;
     final String[] extraOpts;
+    final String buildTarget;
     final String unityVersion;
     final String detectedUnityVersionPath;
 
@@ -102,6 +103,8 @@ public class UnityRunnerConfiguration {
         extraOptsString = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_EXTRA);
 
         extraOpts = extraOptsString.split("\n");
+
+	buildTarget = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_TARGET);
 
         clearBefore = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_CLEAR_OUTPUT_BEFORE);
         cleanAfter = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_CLEAN_OUTPUT_AFTER);

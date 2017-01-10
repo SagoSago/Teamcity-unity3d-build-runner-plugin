@@ -111,6 +111,29 @@
     </td>
 <tr>
 
+<props:selectSectionProperty name="argument.build_target" title="Build target:">
+    <props:selectSectionPropertyContent value="" caption="<Don't switch>"/>
+    <props:selectSectionPropertyContent value="win32" caption="Windows (32-bit) (win32)"/>
+    <props:selectSectionPropertyContent value="win64" caption="Windows (64-bit) (win64)"/>
+    <props:selectSectionPropertyContent value="osx" caption="macOS (osx)"/>
+    <props:selectSectionPropertyContent value="linux" caption="Linux (linux)"/>
+    <props:selectSectionPropertyContent value="linux64" caption="Linux (64-bit) (linux64)"/>
+    <props:selectSectionPropertyContent value="ios" caption="iOS (ios)"/>
+    <props:selectSectionPropertyContent value="android" caption="Android (android)"/>
+    <props:selectSectionPropertyContent value="web" caption="Web (web)"/>
+    <props:selectSectionPropertyContent value="webstreamed" caption="Streamed Web (webstreamed)"/>
+    <props:selectSectionPropertyContent value="webgl" caption="WebGL (webgl)"/>
+    <props:selectSectionPropertyContent value="xboxone" caption="Xbox One (xboxone)"/>
+    <props:selectSectionPropertyContent value="ps4" caption="PS4 (ps4)"/>
+    <props:selectSectionPropertyContent value="psp2" caption="PS Vita (psp2)"/>
+    <props:selectSectionPropertyContent value="wsaplayer" caption="Windows Store (wsaplayer)"/>
+    <props:selectSectionPropertyContent value="tizen" caption="Tizen (tizen)"/>
+    <props:selectSectionPropertyContent value="samsungtv" caption="Samsung TV (samsungtv)"/>
+    <span class="smallNote">
+        Allows the selection of an active build target before a project is loaded.
+    </span>
+</props:selectSectionProperty>
+
 <tr>
     <th>
         <label for="argument.build_extra">Extra args: </label>

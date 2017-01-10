@@ -19,6 +19,7 @@ public interface PluginConstants {
     final String PROPERTY_LINELIST_PATH = "argument.line_list_path";
     final String PROPERTY_BUILD_PATH = "argument.build_path";
     final String PROPERTY_BUILD_PLAYER = "argument.build_player";
+    final String PROPERTY_BUILD_TARGET = "argument.build_target";
     final String PROPERTY_BUILD_EXTRA = "argument.build_extra";
     final String PROPERTY_UNITY_VERSION = "argument.unity_version";
 
