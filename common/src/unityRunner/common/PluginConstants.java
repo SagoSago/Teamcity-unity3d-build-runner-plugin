@@ -23,6 +23,8 @@ public interface PluginConstants {
     final String PROPERTY_BUILD_EXTRA = "argument.build_extra";
     final String PROPERTY_UNITY_VERSION = "argument.unity_version";
 
+    final String PROPERTY_UNITY_LICENSE_CONFIG_FILE_PATH = "argument.unity_license_config_file_path";
+
     final String PROPERTY_CLEAR_OUTPUT_BEFORE = "argument.clear_output_before";
     final String PROPERTY_CLEAN_OUTPUT_AFTER = "argument.clean_output_after";
     final String PROPERTY_WARNINGS_AS_ERRORS = "argument.warnings_as_errors";

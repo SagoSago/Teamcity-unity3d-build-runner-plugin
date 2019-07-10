@@ -4,11 +4,15 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.commons.io.input.Tailer;
 import org.jetbrains.annotations.NotNull;
+import jetbrains.buildServer.log.Loggers;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by IntelliJ IDEA.
@@ -61,6 +65,33 @@ public class UnityRunner {
         } else {
             args.add(String.format("--build_path=%s", configuration.buildPath));
         }
+        
+        if (!configuration.unityLicenseInfoFilePath.equals("")) {
+            try {
+                logMessage(String.format("Getting Unity license info from: %s ", configuration.unityLicenseInfoFilePath));
+                BufferedReader reader = new BufferedReader(new FileReader(configuration.unityLicenseInfoFilePath));
+                String currentLine = reader.readLine().trim();
+                while (currentLine != null) {
+                    if (currentLine.startsWith("username=")) {
+                        String username = currentLine.replace("username=", "");
+                        args.add("-username");
+                        args.add(username);
+                    } else if (currentLine.startsWith("password=")) {
+                        String password = currentLine.replace("password=", "");
+                        args.add("-password");
+                        args.add(password);
+                    } else if (currentLine.startsWith("serial=")) {
+                        String serial = currentLine.replace("serial=", "");
+                        args.add("-serial");
+                        args.add(serial);
+                    }
+                    currentLine = reader.readLine().trim();
+                }
+                reader.close();
+            } catch (Exception e) {
+                Loggers.AGENT.error("Exception reading Unity license info file :" + e.getMessage());
+            }
+        }
 
         if (!configuration.buildTarget.equals("")) {
             args.add("-buildTarget");
@@ -110,6 +141,8 @@ public class UnityRunner {
         //    }
         //});
         //runnerThread.start();
+
+
 
         if (configuration.clearBefore) {
             clearBefore();

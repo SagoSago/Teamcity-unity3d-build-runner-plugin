@@ -160,8 +160,18 @@
     </td>
 </tr>
 
-
-
+<tr>
+    <th>
+        <label for="argument.unity_license_config_file_path">Unity license config file path: </label>
+    </th>
+    <td>
+        <props:textProperty name="argument.unity_license_config_file_path" className="longField"/>
+        <span class="error" id="error_argument.unity_license_config_file_path"></span>
+        <span class="smallNote">
+             Unity license config file path.
+        </span>
+    </td>
+</tr>
 
 <tr>
     <th>

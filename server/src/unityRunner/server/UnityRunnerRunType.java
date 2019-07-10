@@ -70,6 +70,7 @@ public class UnityRunnerRunType extends RunType {
         describeParam("Execute Method", parameters.get(PluginConstants.PROPERTY_EXECUTE_METHOD), sb);
         describeParam("Log path", parameters.get(PluginConstants.PROPERTY_LOG_PATH), sb);
         describeParam("Cleaned log path", parameters.get(PluginConstants.PROPERTY_CLEANED_LOG_PATH), sb);
+        describeParam( "License info file path", parameters.get(PluginConstants.PROPERTY_UNITY_LICENSE_CONFIG_FILE_PATH), sb);
 
         String logIgnore = parameters.get(PluginConstants.PROPERTY_LOG_IGNORE);
         if (logIgnore != null && "true".equals(logIgnore)) {

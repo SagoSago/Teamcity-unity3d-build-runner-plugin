@@ -47,6 +47,7 @@ public class UnityRunnerConfiguration {
     final String buildTarget;
     final String unityVersion;
     final String detectedUnityVersionPath;
+    final String unityLicenseInfoFilePath;
 
     final Platform platform;
     final String overrideLogPath;
@@ -95,6 +96,8 @@ public class UnityRunnerConfiguration {
                     PluginConstants.CONFIGPARAM_UNITY_LATEST_VERSION);
         }
 
+        unityLicenseInfoFilePath = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_UNITY_LICENSE_CONFIG_FILE_PATH);
+
         lineListPath = FilenameUtils.normalize(FilenameUtils.separatorsToSystem(Parameters.getString(runnerParameters, PluginConstants.PROPERTY_LINELIST_PATH)));
         executeMethod = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_EXECUTE_METHOD);
         buildPlayer = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_PLAYER);
@@ -104,7 +107,7 @@ public class UnityRunnerConfiguration {
 
         extraOpts = extraOptsString.split("\n");
 
-	buildTarget = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_TARGET);
+	    buildTarget = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_TARGET);
 
         clearBefore = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_CLEAR_OUTPUT_BEFORE);
         cleanAfter = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_CLEAN_OUTPUT_AFTER);
