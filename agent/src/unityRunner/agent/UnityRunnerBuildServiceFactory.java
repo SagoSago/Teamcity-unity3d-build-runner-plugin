@@ -95,9 +95,9 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
 
                 Map<String,String> foundUnityVersions = new HashMap<String,String>();
 
-                for(String location : UnityRunnerConfiguration.getPossibleUnityLocations(platform)) {
+                for(Map.Entry<String, String> locationGlobPair : UnityRunnerConfiguration.getPossibleUnityLocations(platform).entrySet()) {
                     //  search for <location>/Unity * folders
-                    findUnityVersionsIn(location, platform, foundUnityVersions);
+                    findUnityVersionsIn(locationGlobPair.getKey(), locationGlobPair.getValue(), platform, foundUnityVersions);
                 }
 
                 // find and record the *latest* version of Unity in unity.latest
@@ -148,12 +148,13 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
              */
             private void findUnityVersionsIn(
                     String location,
+                    String globPattern,
                     UnityRunnerConfiguration.Platform platform,
                     Map<String,String> foundUnityVersions) {
 
                 // NOTE: java nio 2 requires java 7 and above
                 Path path = FileSystems.getDefault().getPath(location);
-                try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, "Unity*")) {
+                try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, globPattern)) {
                     for (Path entry: stream) {
                         if (platform ==  UnityRunnerConfiguration.Platform.Mac) {
                             findMacUnityVersion(entry, foundUnityVersions);

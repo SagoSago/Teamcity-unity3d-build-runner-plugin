@@ -7,6 +7,7 @@ import org.apache.commons.io.FilenameUtils;
 import unityRunner.common.PluginConstants;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -201,9 +202,9 @@ public class UnityRunnerConfiguration {
      * @param location location
      * @param locations list of locations
      */
-    private static void addLocation(String location, List<String> locations) {
-        if (isSet(location) && !locations.contains(location)) {
-            locations.add(location);
+    private static void addLocation(String location, String glob, Map<String, String> locations) {
+        if (isSet(location) && !locations.containsKey(location)) {
+            locations.put(location, glob);
         }
     }
 
@@ -212,8 +213,8 @@ public class UnityRunnerConfiguration {
      * @param platform current platform
      * @return list of locations - may be empty
      */
-    static List<String> getPossibleUnityLocations(Platform platform) {
-        List<String> locations = new ArrayList<>(2);
+    static Map<String, String> getPossibleUnityLocations(Platform platform) {
+        Map<String, String> locations = new HashMap<String,String>();
 
         switch (platform) {
             case Windows:
@@ -226,14 +227,16 @@ public class UnityRunnerConfiguration {
                 String x86Location = System.getenv("ProgramFiles(X86)");
                 String x64onx86 = System.getenv("ProgramW6432");
 
-                addLocation(x64Location, locations);
-                addLocation(x86Location, locations);
-                addLocation(x64onx86, locations);
+                addLocation(x64Location, "Unity*", locations);
+                addLocation(x86Location, "Unity*", locations);
+                addLocation(x64onx86, "Unity*", locations);
                 break;
 
             case Mac:
                 // on Mac there is only one location for apps.
-                addLocation("/Applications", locations);
+                addLocation("/Applications", "Unity*", locations);
+                // Adding Unity Hub support.
+                addLocation("/Applications/Unity/Hub/Editor", "*", locations);
                 break;
         }
 
